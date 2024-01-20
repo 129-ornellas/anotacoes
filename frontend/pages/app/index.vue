@@ -1,4 +1,3 @@
 <template>
-    <h1>sou o /app/</h1>
-    <VBtn>click me</VBtn>
+  <VBtn variant="flat" color="primary" prepend-icon="add"> Criar Anotação</VBtn>
 </template>

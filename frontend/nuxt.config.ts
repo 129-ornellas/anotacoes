@@ -1,4 +1,4 @@
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import vuetify, { transformAssetUrls } from "vite-plugin-vuetify"
 
 /*
  * https://nuxt.com/docs/api/configuration/nuxt-config
@@ -16,21 +16,25 @@ export default defineNuxtConfig({
         {
           rel: "preconnect",
           href: "https://fonts.gstatic.com",
-          crossorigin: '',
+          crossorigin: "",
         },
         {
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap",
-        }
-      ]
-    }
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp",
+        },
+      ],
+    },
   },
   build: {
-    transpile: ['vuetify']
+    transpile: ["vuetify"],
   },
   modules: [
     (_options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) => {
+      nuxt.hooks.hook("vite:extendConfig", (config) => {
         // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
       })
