@@ -1,8 +1,10 @@
 <template>
-    <div>
-        eu sou o layout
-    </div>
-    <div>
-        <slot />
-    </div>
+    <VApp>
+        <VNavigationDrawer permanent>
+            asodak
+        </VNavigationDrawer>
+        <VMain>
+            <slot />
+        </VMain>
+    </VApp>
 </template>
