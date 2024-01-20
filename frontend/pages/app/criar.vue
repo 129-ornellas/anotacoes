@@ -1,6 +1,5 @@
 <template>
-  <div class="create-page">
-    <h4>Anotações</h4>
+  <div class="create-page my-8 mx-auto">
     <v-textarea variant="outlined" label="Texto"></v-textarea>
     <v-text-field variant="outlined" prefix="R$" label="Potencial do Negócio"></v-text-field>
     <v-select variant="outlined" chips label="Categorização" multiple></v-select>
@@ -11,7 +10,6 @@
 </template>
 <style>
   .create-page {
-    width: 100%;
-    height: 100%;
+    max-width: 800px;
   }
 </style>
