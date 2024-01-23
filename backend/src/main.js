@@ -21,6 +21,7 @@ app.get('/annotations', async (req, res) => {
     console.log(annotation)
 })
 
+// safe delete
 app.patch('/annotations', async (req, res) => {
     const annotation =  await prisma.annotation.update({
         where:{
