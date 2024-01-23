@@ -14,12 +14,14 @@ app.post("/annotations", async (req, res) => {
       created_at: new Date(),
     },
   })
-  console.log(annotation)
+
+  return res.json(annotation)
 })
 
 app.get("/annotations", async (req, res) => {
   const annotation = await prisma.annotation.findMany()
-  console.log(annotation)
+
+  return res.json(annotation)
 })
 
 // safe delete
@@ -32,7 +34,8 @@ app.patch("/annotations", async (req, res) => {
       deleted_at: new Date(),
     },
   })
-  console.log(annotation)
+
+  return res.json(annotation)
 })
 
 app.listen(port, () => {
