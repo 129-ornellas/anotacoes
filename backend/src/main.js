@@ -1,9 +1,11 @@
 import { PrismaClient } from "@prisma/client"
+import cors from "cors"
 import express from "express"
 import { z } from "zod"
 const prisma = new PrismaClient()
 const app = express()
 const port = 8000
+app.use(cors())
 app.use(express.json())
 const AnnotationSchema = z.object({
   title: z.string().min(1),
