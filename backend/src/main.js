@@ -4,6 +4,7 @@ import { z } from "zod"
 const prisma = new PrismaClient()
 const app = express()
 const port = 8000
+app.use(express.json())
 const AnnotationSchema = z.object({
   title: z.string().min(1),
   category: z.string().min(1),
@@ -11,11 +12,13 @@ const AnnotationSchema = z.object({
   remind_in: z.coerce.date(),
 })
 app.post("/annotations", async (req, res) => {
+  const { success, data } = AnnotationSchema.safeParse(req.body)
+  if (!success) {
+    return res.status(400).json({})
+  }
   const annotation = await prisma.annotation.create({
     data: {
-      title: "aaa",
-      category: "letra",
-      remind_in: new Date(),
+      ...data,
       created_at: new Date(),
     },
   })
