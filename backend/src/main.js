@@ -1,10 +1,15 @@
 import { PrismaClient } from "@prisma/client"
 import express from "express"
-
+import { z } from "zod"
 const prisma = new PrismaClient()
 const app = express()
 const port = 8000
-
+const AnnotationSchema = z.object({
+  title: z.string().min(1),
+  category: z.string().min(1),
+  business_potential: z.number().min(1),
+  remind_in: z.coerce.date(),
+})
 app.post("/annotations", async (req, res) => {
   const annotation = await prisma.annotation.create({
     data: {
