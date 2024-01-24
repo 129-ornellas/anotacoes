@@ -37,22 +37,24 @@ app.get("/annotations", async (req, res) => {
 })
 
 // safe delete
-// req.params.id
 app.delete("/annotations/:id", async (req, res) => {
   const { success, data: id } = ValidIdSchema.safeParse(req.params.id)
   if (!success) {
     return res.status(400).json({})
   }
-  const annotation = await prisma.annotation.update({
-    where: {
-      id: id,
-    },
-    data: {
-      deleted_at: new Date(),
-    },
-  })
-
-  return res.json(annotation)
+  try {
+    const annotation = await prisma.annotation.update({
+      where: {
+        id: id,
+      },
+      data: {
+        deleted_at: new Date(),
+      },
+    })
+    return res.json(annotation)
+  } catch {
+    return res.status(400).json({})
+  }
 })
 
 app.listen(port, () => {
