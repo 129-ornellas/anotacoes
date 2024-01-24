@@ -11,6 +11,7 @@ const AnnotationSchema = z.object({
   business_potential: z.number().min(1),
   remind_in: z.coerce.date(),
 })
+const ValidIdSchema = z.coerce.number().min(1)
 app.post("/annotations", async (req, res) => {
   const { success, data } = AnnotationSchema.safeParse(req.body)
   if (!success) {
@@ -22,21 +23,29 @@ app.post("/annotations", async (req, res) => {
       created_at: new Date(),
     },
   })
-
   return res.json(annotation)
 })
 
 app.get("/annotations", async (req, res) => {
-  const annotation = await prisma.annotation.findMany()
+  const annotation = await prisma.annotation.findMany({
+    where: {
+      deleted_at: null,
+    },
+  })
 
   return res.json(annotation)
 })
 
 // safe delete
-app.delete("/annotations", async (req, res) => {
+// req.params.id
+app.delete("/annotations/:id", async (req, res) => {
+  const { success, data: id } = ValidIdSchema.safeParse(req.params.id)
+  if (!success) {
+    return res.status(400).json({})
+  }
   const annotation = await prisma.annotation.update({
     where: {
-      id: 2,
+      id: id,
     },
     data: {
       deleted_at: new Date(),
