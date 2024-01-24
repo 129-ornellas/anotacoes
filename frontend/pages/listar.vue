@@ -4,8 +4,8 @@
       <template #prepend>
         <VIcon>attach_file</VIcon>
       </template>
-      <template #title> {{ item.message }} </template>
-      <template #subtitle> 27/05/2024 - 23:12</template>
+      <template #title> {{ item.title }} </template>
+      <template #subtitle>{{ item.remind_in }}</template>
       <template #append>
         <VIcon>delete</VIcon>
       </template>
@@ -14,17 +14,18 @@
 </template>
 <script>
   import axios from "axios"
-
+  // const instance = axios.create({ baseURL: "http://localhost:8000/annotations/"})
   export default {
     data() {
       return {
-        items: [{ message: "Foo" }, { message: "Bar" }],
+        items: null,
       }
     },
     async mounted() {
       try {
         const response = await axios.get("http://localhost:8000/annotations/")
-        console.log(response)
+        this.items = response.data
+        console.log(response.data)
       } catch (error) {
         console.error(error)
       }
