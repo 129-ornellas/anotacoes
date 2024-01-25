@@ -8,7 +8,7 @@ import type { Axios } from 'axios';
     <template #default="{ isActive }">
       <v-card title="Excluir">
         <h1></h1>
-        <v-card-text> {{ id }} </v-card-text>
+        <v-card-text>Tem certeza que deseja excluir? </v-card-text>
 
         <v-card-actions>
           <v-spacer></v-spacer>
