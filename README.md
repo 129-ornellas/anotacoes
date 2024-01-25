@@ -1,5 +1,7 @@
 # Anotações
 
+![image](https://github.com/129-ornellas/anotacoes/assets/103268305/741c7cd3-31ff-4e17-af66-146b3855cccc)
+
 ## Sobre o projeto:
 
 O projeto **Anotações** é uma aplicação FullStack, utilizando **Vue.js**, **Express.js** e **sqlite**. 
