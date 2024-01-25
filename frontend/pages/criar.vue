@@ -19,13 +19,15 @@
       label="Lembrete"
       type="datetime-local"></v-text-field>
     <v-btn-group variant="outlined" divided border style="width: 100%">
-      <VBtn variant="flat" size="large" style="width: 90%" @click="criaAnotacao">Salvar</VBtn>
-      <VBtn variant="flat" icon="delete" style="width: 10%"></VBtn>
+      <VBtn variant="flat" style="width: 20%" to="/">Voltar</VBtn>
+      <VBtn variant="flat" size="large" style="width: 80%" @click="criaAnotacao">Salvar</VBtn>
     </v-btn-group>
   </div>
 </template>
 
 <script>
+  const router = useRouter()
+
   import axios from "axios"
   export default {
     data() {
@@ -47,7 +49,9 @@
             remind_in: this.remind_in,
           })
           .then(function (response) {
-            console.log(response)
+            if (response.status == 200) {
+              router.push("/listar")
+            }
           })
           .catch(function (error) {
             console.log(error)
