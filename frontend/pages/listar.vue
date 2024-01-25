@@ -7,14 +7,14 @@
       <template #title> {{ item.title }} </template>
       <template #subtitle>{{ item.remind_in }}</template>
       <template #append>
-        <VIcon>delete</VIcon>
+        <VIcon><Deleta :id="item.id" @id-removido="removerItem"></Deleta></VIcon>
+        <!--  -->
       </template>
     </v-card>
   </div>
 </template>
 <script>
   import axios from "axios"
-  // const instance = axios.create({ baseURL: "http://localhost:8000/annotations/"})
   export default {
     data() {
       return {
@@ -25,15 +25,23 @@
       try {
         const response = await axios.get("http://localhost:8000/annotations/")
         this.items = response.data
-        console.log(response.data)
       } catch (error) {
         console.error(error)
       }
+    },
+    methods: {
+      removerItem(id) {
+        const newItems = this.items.filter((item) => item.id !== id)
+        this.items = newItems
+      },
     },
   }
 </script>
 <style>
   .list-page {
     max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 </style>
