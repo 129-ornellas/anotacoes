@@ -2,7 +2,7 @@
   <div class="app-page">
     <VIcon class="ap-icon mb-2" size="48px">attach_file</VIcon>
     <h1 class="mb-4">Anotações</h1>
-    <VBtn variant="flat" color="primary" prepend-icon="add"> Criar Anotação</VBtn>
+    <VBtn variant="flat" color="primary" prepend-icon="add" to="/criar">Criar Anotação</VBtn>
   </div>
 </template>
 
